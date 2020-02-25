@@ -1,8 +1,6 @@
 'use strict';
 
 var express = require('express');
-// var exphbs  = require('express-handlebars');
-// var bodyParser = require('body-parser');
 let mysql = require("mysql");
 
 let dbhost = process.env['DBHOST'] || 'localhost';
@@ -19,7 +17,7 @@ function getConnection() {
 
 let app = express();
 
-app.get('/registrations', function (req, res) {
+app.get('/registration', function (req, res) {
     let connection = getConnection();
     connection.connect(function (err) {
         if (err) {
@@ -37,7 +35,9 @@ app.get('/registrations', function (req, res) {
     });    
 });
 
-app.post('/registration', function (req, res) {
+// http://172.31.87.117:8888/registration?firstName=Nathan&lastName=Swaim&grade=9&email=nswai983&shirtSize=M&hrUsername=nswai983
+
+app.post('/registrations', function (req, res) {
     var firstName = req.body.firstName || "";
     var lastName = req.body.lastName || "";
     var grade = req.body.grade || "";

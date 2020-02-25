@@ -1,4 +1,4 @@
-Hours: 1.5
+Hours: 2.5
 
 Need help with MySQL
 AWS Lambda
@@ -7,4 +7,5 @@ Copying files from local to aws and vice versa
 
 help from Robert Meyer
     - Mysql localhost connection issues
-    - 
+    - Aws file transfer using GIT
+    - 2.25.2020 (15 minutes)

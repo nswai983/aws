@@ -1,13 +1,13 @@
 {
-  "name": "lab3",
+  "name": "ex2",
   "version": "0.0.1",
-  "description": "For the eager students",
+  "description": "Web Services",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Dr. Schaub",
+  "author": "Nathan Swaim",
   "license": "ISC",
   "repository": {},
   "dependencies": {
