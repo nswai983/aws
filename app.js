@@ -91,7 +91,7 @@ app.post('/registration', function (req, res) {
             res.send("Unable to connect to database! " + err);
             return;
         }
-        connection.query(`UPDATE Registrations VALUES (${firstName}, ${lastName}, ${grade}, ${email}, ${shirtSize}, ${hrUsername})`, function (err, results) {
+        connection.commit(`UPDATE Registrations VALUES (${firstName}, ${lastName}, ${grade}, ${email}, ${shirtSize}, ${hrUsername})`, function (err, results) {
             if (err) {
                 res.send("Error! " + err)
             }
