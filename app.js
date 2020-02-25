@@ -1,6 +1,6 @@
 'use strict';
 
-var express = require('express');
+let express = require('express');
 let mysql = require("mysql");
 
 let dbhost = process.env['DBHOST'] || 'localhost';
@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
     res.redirect('/registrations');
 });
 
-app.get('/registrations', function (req, res) {
+app.get('/reglist', function (req, res) {
     let connection = getConnection();
     connection.connect(function (err) {
         if (err) {
@@ -41,14 +41,14 @@ app.get('/registrations', function (req, res) {
 
 // http://172.31.87.117:8888/registration?firstName=Nathan&lastName=Swaim&grade=9&email=nswai983&shirtSize=M&hrUsername=nswai983
 
-app.post('/registrations', function (req, res) {
-    var firstName = req.body.firstName || "";
-    var lastName = req.body.lastName || "";
-    var grade = req.body.grade || "";
-    var email = req.body.email || "";
-    var shirtSize = req.body.shirtSize || "";
-    var hrUsername = req.body.hrUsername || "";
-    var errMsg;
+app.post('/registration', function (req, res) {
+    let firstName = req.body.firstName || "";
+    let lastName = req.body.lastName || "";
+    let grade = req.body.grade || "";
+    let email = req.body.email || "";
+    let shirtSize = req.body.shirtSize || "";
+    let hrUsername = req.body.hrUsername || "";
+    let errMsg;
 
     firstName = firstName.trim();
     lastName = lastName.trim();
@@ -81,6 +81,7 @@ app.post('/registrations', function (req, res) {
 
     if (errMsg) {
         res.status(400).send( {error: errMsg} );
+        console.log("hello")
     }
 
     let connection = getConnection();
