@@ -4,7 +4,7 @@
   "description": "Web Services",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nathan Swaim",
@@ -13,7 +13,7 @@
   "dependencies": {
     "mysql": "^2.18",
     "express": "^4.1",
-    "body-parser": "1.16.x", 
+    "body-parser": "1.16.x",
     "express-handlebars": "*"
   }
 }
