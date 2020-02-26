@@ -99,12 +99,15 @@ app.post('/registration', function (req, res) {
             res.send("Unable to connect to database! " + err);
             return;
         }
+        console.log("Connect")
         connection.query(`UPDATE Registrations SET firstName=?, lastName=?, grade=?, email=?, shirtSize=?, hrUsername=?`, [firstName, lastName, grade, email, shirtSize, hrUsername], function (err, results) {
             if (err) {
                 res.send("Error! " + err)
             }
-            connection.destroy();
+            res.send("Successful Update")
+            console.log("qstring")
         });
+        connection.destroy();
     });
 
 });
