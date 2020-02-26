@@ -2,6 +2,17 @@
 
 let express = require('express');
 let mysql = require("mysql");
+let exphbs  = require('express-handlebars');
+let bodyParser = require('body-parser');
+
+let app = express();
+
+app.engine('hbs', exphbs({defaultLayout: 'main', extname: 'hbs'}));
+app.set('view engine', 'hbs');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// ----------------- routes --------------------------
 
 let dbhost = process.env['DBHOST'] || 'localhost';
 
@@ -14,8 +25,6 @@ function getConnection() {
     "database": "mydb"
     });
 }
-
-let app = express();
 
 app.get('/', function (req, res) {
     res.redirect('/reglist');

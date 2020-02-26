@@ -12,6 +12,8 @@
   "repository": {},
   "dependencies": {
     "mysql": "^2.18",
-    "express": "^4.1"
+    "express": "^4.1",
+    "body-parser": "1.16.x", 
+    "express-handlebars": "*"
   }
 }
