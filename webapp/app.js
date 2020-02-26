@@ -93,7 +93,7 @@ app.post('/registration', function (req, res) {
     }
 
     if (errMsg !== '') {
-        res.render('register', { errmsg: errMsg } );
+        return res.render('register', { errmsg: errMsg } );
     }
 
     console.log("register.")
