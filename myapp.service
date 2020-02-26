@@ -4,7 +4,7 @@ After=docker.service network-online.target
 Requires=docker.service network-online.target
 
 [Service]
-WorkingDirectory=/home/ubuntu/cps404/lab3
+WorkingDirectory=/home/ubuntu/aws
 Type=oneshot
 RemainAfterExit=yes
 
