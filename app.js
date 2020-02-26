@@ -18,7 +18,7 @@ function getConnection() {
 let app = express();
 
 app.get('/', function (req, res) {
-    res.redirect('/registrations');
+    res.redirect('/reglist');
 });
 
 app.get('/reglist', function (req, res) {
