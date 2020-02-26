@@ -50,7 +50,7 @@ app.get('/registrations', function (req, res) {
 
 // http://172.31.87.117:8888/registration?firstName=Nathan&lastName=Swaim&grade=9&email=nswai983&shirtSize=M&hrUsername=nswai983
 
-app.get('/', function (req, res) {
+app.get('/registration', function (req, res) {
     res.render('register');
 });
 
@@ -95,7 +95,7 @@ app.post('/registration', function (req, res) {
     if (errMsg !== '') {
         res.render('register', { errmsg: errMsg } );
     }
-    
+
     console.log("register.")
     let connection = getConnection();
     connection.connect(function (err) {
