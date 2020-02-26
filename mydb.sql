@@ -1,11 +1,3 @@
-create table Person (
-  person_id integer primary key,
-  person_name varchar(30)
-);
-
-insert into Person values (1, 'Fred Jones');
-insert into Person values (2, 'Alf Wilson');
-
 create table Registrations (
   registration_id integer NOT NULL AUTO_INCREMENT primary key,
   firstName varchar(30),

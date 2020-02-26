@@ -27,10 +27,10 @@ function getConnection() {
 }
 
 app.get('/', function (req, res) {
-    res.redirect('/reglist');
+    res.redirect('/registrations');
 });
 
-app.get('/reglist', function (req, res) {
+app.get('/registrations', function (req, res) {
     let connection = getConnection();
     connection.connect(function (err) {
         if (err) {
@@ -49,6 +49,10 @@ app.get('/reglist', function (req, res) {
 });
 
 // http://172.31.87.117:8888/registration?firstName=Nathan&lastName=Swaim&grade=9&email=nswai983&shirtSize=M&hrUsername=nswai983
+
+app.get('/', function (req, res) {
+    res.render('register');
+});
 
 app.post('/registration', function (req, res) {
     let firstName = req.body.firstName || "";
@@ -89,8 +93,9 @@ app.post('/registration', function (req, res) {
     }
 
     if (errMsg !== '') {
-        return res.status(400).send( {error: errMsg} );
+        res.render('register', { errmsg: errMsg } );
     }
+    
     console.log("register.")
     let connection = getConnection();
     connection.connect(function (err) {
@@ -106,7 +111,6 @@ app.post('/registration', function (req, res) {
             }
             console.log("qstring");
             res.send(results);
-            
             connection.destroy();
         });
     });

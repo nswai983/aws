@@ -1,4 +1,4 @@
-Hours: 2.5
+Hours: 6.00
 
 Need help with MySQL
 AWS Lambda
@@ -9,3 +9,11 @@ help from Robert Meyer
     - Mysql localhost connection issues
     - Aws file transfer using GIT
     - 2.25.2020 (15 minutes)
+
+help from zac hayes
+    - delete folder in aws
+    - github folder upload issues
+    - docker navigation
+    - 2.25.2020 1.25 hours
+
+    https://www.w3schools.com/sql/sql_autoincrement.asp
