@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // ----------------- routes --------------------------
 
-let dbhost = process.env['DBHOST'] || 'localhost';
+let dbhost = process.env['DBHOST'] || '127.0.0.1';
 
 function getConnection() {
     return mysql.createConnection({
