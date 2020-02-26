@@ -68,7 +68,7 @@ app.post('/registration', function (req, res) {
         errMsg = "Please supply first and last name.";
     }
 
-    if ((grade == '') || (grade != '9') || (grade != '10') || (grade != '11') || (grade != '12'))
+    if ((grade != '9') && (grade != '10') && (grade != '11') && (grade != '12'))
     {
         errMsg = "Please enter grade (9, 10, 11, 12).";
     }
