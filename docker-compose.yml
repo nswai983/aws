@@ -20,7 +20,6 @@ services:
     container_name: app1
     working_dir: /webapp
     user: "1000:1000"
-    command: npm start
     volumes:
       - ./webapp:/app
     environment:
@@ -29,7 +28,7 @@ services:
       - PORT=8888
     ports:
       - 80:8888    # External port : container port
-    
+    command: npm start
 
 volumes:
   mysql_data:
