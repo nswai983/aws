@@ -78,7 +78,7 @@ app.post('/registration', function (req, res) {
         errMsg = "Please enter email.";
     }
 
-    if ((shirtSize == '') && (shirtSize != 'S') && (shirtSize != 'M') && (shirtSize != 'L'))
+    if ((shirtSize != 'S') && (shirtSize != 'M') && (shirtSize != 'L'))
     {
         errMsg = "Please enter your shirt size (S, M, L).";
     }
