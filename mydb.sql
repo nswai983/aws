@@ -7,7 +7,7 @@ insert into Person values (1, 'Fred Jones');
 insert into Person values (2, 'Alf Wilson');
 
 create table Registrations (
-  registration_id integer primary key,
+  registration_id integer NOT NULL IDENTITY(1,1) primary key,
   firstName varchar(30),
   lastName varchar(30),
   grade integer,
