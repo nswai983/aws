@@ -104,11 +104,10 @@ app.post('/registration', function (req, res) {
             if (err) {
                 res.send("Error! " + err)
             }
-            res.send("Successful Update")
-            console.log("qstring")
+            // res.send("Successful Update");
+            console.log("qstring");
+            connection.destroy();
         });
-        connection.destroy();
-        console.log("destroyed")
     });
 
 });
