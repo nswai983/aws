@@ -57,7 +57,7 @@ app.post('/registration', function (req, res) {
     let email = req.body.email || "";
     let shirtSize = req.body.shirtSize || "";
     let hrUsername = req.body.hrUsername || "";
-    let errMsg;
+    let errMsg = '';
 
     firstName = firstName.trim();
     lastName = lastName.trim();
@@ -88,10 +88,10 @@ app.post('/registration', function (req, res) {
         errMsg = "Please enter your hackerrank username.";
     }
 
-    if (errMsg) {
+    if (errMsg !== '') {
         return res.status(400).send( {error: errMsg} );
     }
-
+    console.log("register.")
     let connection = getConnection();
     connection.connect(function (err) {
         if (err) {
@@ -108,6 +108,7 @@ app.post('/registration', function (req, res) {
             console.log("qstring")
         });
         connection.destroy();
+        console.log("destroyed")
     });
 
 });
