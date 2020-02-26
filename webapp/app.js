@@ -110,7 +110,7 @@ app.post('/registration', function (req, res) {
                 res.send("Error! " + err)
             }
             console.log("qstring");
-            res.send(results);
+            res.render('complete', { firstName: firstName } )
             connection.destroy();
         });
     });
