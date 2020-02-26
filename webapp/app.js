@@ -89,8 +89,7 @@ app.post('/registration', function (req, res) {
     }
 
     if (errMsg) {
-        res.status(400).send( {error: errMsg} );
-        console.log("hello")
+        return res.status(400).send( {error: errMsg} );
     }
 
     let connection = getConnection();
