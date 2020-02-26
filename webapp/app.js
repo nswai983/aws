@@ -1,6 +1,6 @@
 'use strict';
 
-var express = require('express');
+let express = require('express');
 let mysql = require("mysql");
 
 let dbhost = process.env['DBHOST'] || 'localhost';
@@ -17,8 +17,14 @@ function getConnection() {
 
 let app = express();
 
-app.get('/registration', function (req, res) {
+app.get('/', function (req, res) {
+    // res.redirect('/reglist');
+    res.send("Hello");
+});
+
+app.get('/reglist', function (req, res) {
     let connection = getConnection();
+    res.send("Test");
     connection.connect(function (err) {
         if (err) {
             console.log("Problem connecting to database", err);
@@ -29,7 +35,7 @@ app.get('/registration', function (req, res) {
             if (err) {
                 res.send("Error! " + err)
             }
-            res.send(JSON.parse(results));
+            res.send(results);
             connection.destroy();
         });
     });    
@@ -37,14 +43,14 @@ app.get('/registration', function (req, res) {
 
 // http://172.31.87.117:8888/registration?firstName=Nathan&lastName=Swaim&grade=9&email=nswai983&shirtSize=M&hrUsername=nswai983
 
-app.post('/registrations', function (req, res) {
-    var firstName = req.body.firstName || "";
-    var lastName = req.body.lastName || "";
-    var grade = req.body.grade || "";
-    var email = req.body.email || "";
-    var shirtSize = req.body.shirtSize || "";
-    var hrUsername = req.body.hrUsername || "";
-    var errMsg;
+app.post('/registration', function (req, res) {
+    let firstName = req.body.firstName || "";
+    let lastName = req.body.lastName || "";
+    let grade = req.body.grade || "";
+    let email = req.body.email || "";
+    let shirtSize = req.body.shirtSize || "";
+    let hrUsername = req.body.hrUsername || "";
+    let errMsg;
 
     firstName = firstName.trim();
     lastName = lastName.trim();
@@ -77,6 +83,7 @@ app.post('/registrations', function (req, res) {
 
     if (errMsg) {
         res.status(400).send( {error: errMsg} );
+        console.log("hello")
     }
 
     let connection = getConnection();
@@ -86,7 +93,7 @@ app.post('/registrations', function (req, res) {
             res.send("Unable to connect to database! " + err);
             return;
         }
-        connection.query(`UPDATE Registrations VALUES (${firstName}, ${lastName}, ${grade}, ${email}, ${shirtSize}, ${hrUsername})`, function (err, results) {
+        connection.commit(`UPDATE Registrations VALUES (${firstName}, ${lastName}, ${grade}, ${email}, ${shirtSize}, ${hrUsername})`, function (err, results) {
             if (err) {
                 res.send("Error! " + err)
             }
