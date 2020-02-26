@@ -18,11 +18,13 @@ function getConnection() {
 let app = express();
 
 app.get('/', function (req, res) {
-    res.redirect('/reglist');
+    // res.redirect('/reglist');
+    res.send("Hello");
 });
 
 app.get('/reglist', function (req, res) {
     let connection = getConnection();
+    res.send("Test");
     connection.connect(function (err) {
         if (err) {
             console.log("Problem connecting to database", err);
