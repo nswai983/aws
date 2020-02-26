@@ -100,7 +100,7 @@ app.post('/registration', function (req, res) {
             return;
         }
         console.log("Connect")
-        connection.query(`UPDATE Registrations SET firstName=?, lastName=?, grade=?, email=?, shirtSize=?, hrUsername=?`, [firstName, lastName, grade, email, shirtSize, hrUsername], function (err, results) {
+        connection.query(`INSERT INTO Registrations (firstName, lastName, grade, email, shirtSize, hrUsername) VALUES (?, ?, ?, ?, ?, ?);`, [firstName, lastName, grade, email, shirtSize, hrUsername], function (err, results) {
             if (err) {
                 res.send("Error! " + err)
             }
