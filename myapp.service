@@ -4,7 +4,7 @@ After=docker.service network-online.target
 Requires=docker.service network-online.target
 
 [Service]
-WorkingDirectory=/home/ubuntu/aws
+WorkingDirectory=/home/ubuntu/aws/webapp
 Type=oneshot
 RemainAfterExit=yes
 
