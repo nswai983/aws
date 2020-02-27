@@ -2,13 +2,9 @@
 
 let express = require('express');
 let mysql = require("mysql");
-let exphbs  = require('express-handlebars');
 let bodyParser = require('body-parser');
 
 let app = express();
-
-app.engine('hbs', exphbs({defaultLayout: 'main', extname: 'hbs'}));
-app.set('view engine', 'hbs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -26,35 +22,24 @@ function getConnection() {
     });
 }
 
-app.get('/', function (req, res) {
-    res.redirect('/registrations');
-});
-
 app.get('/registrations', function (req, res) {
     let connection = getConnection();
     connection.connect(function (err) {
         if (err) {
-            console.log("Problem connecting to database", err);
-            res.send("Unable to connect to database! " + err);
+            res.status(500).send("Unable to connect to database! " + err);
             return;
         }
         connection.query("SELECT * FROM Registrations", function (err, results) {
             if (err) {
                 res.send("Error! " + err)
             }
-            res.send(results);
+            res.status(200).send(results);
             connection.destroy();
         });
     });    
 });
 
-// http://172.31.87.117:8888/registration?firstName=Nathan&lastName=Swaim&grade=9&email=nswai983&shirtSize=M&hrUsername=nswai983
-
-app.get('/registration', function (req, res) {
-    res.render('register');
-});
-
-app.post('/registration', function (req, res) {
+app.post('/registrations', function (req, res) {
     let firstName = req.body.firstName || "";
     let lastName = req.body.lastName || "";
     let grade = req.body.grade || "";
@@ -93,24 +78,20 @@ app.post('/registration', function (req, res) {
     }
 
     if (errMsg !== '') {
-        return res.render('register', { errmsg: errMsg } );
+        return res.status(400).send("Validation Error: " + errMsg);
     }
 
-    console.log("register.")
     let connection = getConnection();
     connection.connect(function (err) {
         if (err) {
-            console.log("Problem connecting to database", err);
-            res.send("Unable to connect to database! " + err);
+            res.status(500).send("Unable to connect to database! " + err);
             return;
         }
-        console.log("Connect")
         connection.query(`INSERT INTO Registrations (firstName, lastName, grade, email, shirtSize, hrUsername) VALUES (?, ?, ?, ?, ?, ?);`, [firstName, lastName, grade, email, shirtSize, hrUsername], function (err, results) {
             if (err) {
-                res.send("Error! " + err)
+                res.status(500).send("Error! " + err)
             }
-            console.log("qstring");
-            res.render('complete', { firstName: firstName } )
+            res.status(200).send()
             connection.destroy();
         });
     });
@@ -119,6 +100,10 @@ app.post('/registration', function (req, res) {
 
 let port = process.env['PORT'] || 8888;
 port = parseInt(port)
-app.listen(port, function () {
+app.listen(port, function (err) {
+    if (err) {
+        res.status(400).send("Unable to connect to web service! " + err);
+        return;
+    }
     console.log('Express server listening on port ' + port);
 });
